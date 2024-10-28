@@ -1,5 +1,6 @@
 package capstone.viewIt.member.domain;
 
+import capstone.viewIt.categoryAndTitle.domain.CategoryAndTitle;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,10 @@ public class Member {
     private String password;
 
     @Column(unique = true) private String nickname;
+
+    @OneToOne
+    @JoinColumn(name = "categoryAndTitle_id")
+    private CategoryAndTitle categoryAndTitle;
 
     @Builder
     public Member(String memberId, String password, String nickname) {
