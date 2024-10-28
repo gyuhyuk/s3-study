@@ -1,5 +1,6 @@
 package capstone.viewIt.categoryAndTitle.domain;
 
+import capstone.viewIt.common.entity.BaseEntity;
 import capstone.viewIt.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,15 +8,14 @@ import lombok.Setter;
 
 @Entity
 @Getter
-public class CategoryAndTitle {
+public class CategoryAndTitle extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Setter private String title;
-    @Setter private String categoryName;
+    @Setter @Column(nullable = false) private String title;
+    @Setter @Column(nullable = false) private String categoryName;
 
-    @OneToOne(mappedBy = "categoryAndTitle")
-    private Member member;
+    @Setter @ManyToOne(optional = false) private Member member;
 
     protected CategoryAndTitle() {}
 

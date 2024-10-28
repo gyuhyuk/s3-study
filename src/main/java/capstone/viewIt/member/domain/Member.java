@@ -4,6 +4,11 @@ import capstone.viewIt.categoryAndTitle.domain.CategoryAndTitle;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 
 @Entity
 @Getter
@@ -22,9 +27,9 @@ public class Member {
 
     @Column(unique = true) private String nickname;
 
-    @OneToOne
-    @JoinColumn(name = "categoryAndTitle_id")
-    private CategoryAndTitle categoryAndTitle;
+    @OneToMany(mappedBy = "member")
+    @ToString.Exclude
+    private final Set<CategoryAndTitle> categoryAndTitles = new LinkedHashSet<>();
 
     @Builder
     public Member(String memberId, String password, String nickname) {
@@ -36,5 +41,7 @@ public class Member {
     public static Member of(String memberId, String password, String nickname) {
         return new Member(memberId, password, nickname);
     }
-
+    public void addCategoryAndTitle(CategoryAndTitle categoryAndTitle) {
+        this.categoryAndTitles.add(categoryAndTitle);
+    }
 }
