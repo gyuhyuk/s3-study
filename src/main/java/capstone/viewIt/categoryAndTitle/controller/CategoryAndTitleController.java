@@ -1,7 +1,7 @@
 package capstone.viewIt.categoryAndTitle.controller;
 
-import capstone.viewIt.categoryAndTitle.domain.CategoryAndTitle;
 import capstone.viewIt.categoryAndTitle.dto.CategoryAndTitleRequestDto;
+import capstone.viewIt.categoryAndTitle.dto.CategoryAndTitleResponseDto;
 import capstone.viewIt.categoryAndTitle.service.CategoryAndTitleService;
 import capstone.viewIt.common.response.CustomResponse;
 import capstone.viewIt.member.controller.helper.TokenInformation;
@@ -20,7 +20,7 @@ public class CategoryAndTitleController {
     private final CategoryAndTitleService categoryAndTitleService;
 
     @PostMapping("/categoryAndTitle")
-    public CustomResponse<?> postCategoryAndTitle(@RequestBody CategoryAndTitleRequestDto categoryAndTitleRequestDto, @TokenInformation Long memberId) {
+    public CustomResponse<CategoryAndTitleResponseDto> postCategoryAndTitle(@RequestBody CategoryAndTitleRequestDto categoryAndTitleRequestDto, @TokenInformation Long memberId) {
         return new CustomResponse<>(
                 HttpStatus.OK.value(), "카테고리와 제목이 정상적으로 저장되었습니다.", categoryAndTitleService.saveCategoryAndTitle(categoryAndTitleRequestDto, memberId)
         );

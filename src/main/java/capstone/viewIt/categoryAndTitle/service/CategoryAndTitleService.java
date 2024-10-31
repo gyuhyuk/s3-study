@@ -26,12 +26,14 @@ public class CategoryAndTitleService {
                 .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
 
         CategoryAndTitle categoryAndTitle = CategoryAndTitle.of(
-                requestDto.getTitle(),
-                requestDto.getCategoryName(),
+                requestDto.title(),
+                requestDto.categoryName(),
                 member
         );
 
-        //TODO: title과 category or 해서 하나라도 비어있으면 에러 뜨게
+        if(requestDto.title().isEmpty() || requestDto.categoryName().isEmpty()) {
+            throw new CustomException(ErrorCode.TITLE_OR_CATEGORY_REQUIRED);
+        }
 
         member.addCategoryAndTitle(categoryAndTitle);
         CategoryAndTitle savedCategoryAndTitle = categoryAndTitleRepository.save(categoryAndTitle);

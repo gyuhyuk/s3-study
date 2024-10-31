@@ -1,6 +1,5 @@
 package capstone.viewIt.common.exception;
 
-
 import lombok.*;
 
 @Getter
@@ -9,9 +8,12 @@ public enum ErrorCode {
     /* 400 BAD_REQUEST : 잘못된 요청 */
     INVALID_INPUT_VALUE(400, "BAD_REQUEST", "입력값이 올바르지 않습니다."),
     BAD_REQUEST(400, "BAD_REQUEST", "잘못된 요청입니다."),
-    SELF_LIKE_NOT_ALLOWED(400, "BAD_REQUEST", "자신의 댓글에는 좋아요를 요청할 수 없습니다."),
+    TITLE_OR_CATEGORY_REQUIRED(400, "BAD_REQUEST", "제목 또는 카테고리는 필수값입니다."),
+    QUESTION_OR_ANSWER_REQUIRED(400, "BAD_REQUEST", "질문 또는 답변은 필수값입니다."),
     WRONG_PASSWORD(400, "BAD_REQUEST", "잘못된 비밀번호입니다."),
     INVALID_QUERY(400, "BAD_REQUEST", "인코딩에 실패했습니다."),
+    QUESTION_ANSWER_LENGTH_REQUIRED(400, "BAD_REQUEST", "질문과 답변은 3~5개 까지만 가능합니다."),
+    MAX_QUESTIONS_REACHED(400, "BAD_REQUEST", "질문 개수가 꽉찼습니다."),
 
     /* 401 UNAUTHORIZED : 인증되지 않은 사용자 */
     UNAUTHENTICATED_USERS(401, "UNAUTHORIZED", "인증이 필요합니다."),
