@@ -50,6 +50,12 @@ public class QuestionService {
             throw new CustomException(ErrorCode.QUESTION_ANSWER_LENGTH_REQUIRED);
         }
 
+        for(int i=0; i<questions.size(); i++) {
+            if(questions.get(i).getResumeQuestion().isEmpty() || questions.get(i).getResumeAnswer().isEmpty()) {
+                throw new CustomException(ErrorCode.BAD_REQUEST);
+            }
+        }
+
         List<Question> savedQuestions = questionRepository.saveAll(questions);
 
 //        return savedQuestions.stream()
