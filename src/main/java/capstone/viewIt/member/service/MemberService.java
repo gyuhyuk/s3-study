@@ -58,10 +58,6 @@ public class MemberService {
         return memberRepository.existsByMemberId(memberId);
     }
 
-    public boolean checkNicknameDuplicate(String nickname) {
-        return memberRepository.existsByNickname(nickname);
-    }
-
     public Member findMemberByJwt(final String jwt) {
         Claims claims = tokenUtils.getClaimsFormToken(jwt);
         String memberId = claims.get("memberId", String.class);

@@ -46,14 +46,4 @@ public class MemberController {
                 memberService.checkMemberIdDuplicate(memberId)
         );
     }
-
-    // 닉네임 중복 확인
-    @GetMapping("/api/nickname/{nickname}/exists")
-    public CustomResponse<Boolean> checkNicknameDuplicate(@PathVariable String nickname) {
-        return new CustomResponse<> (
-                HttpStatus.OK.value(),
-                "null",
-                memberService.checkNicknameDuplicate(nickname)
-        );
-    }
 }
