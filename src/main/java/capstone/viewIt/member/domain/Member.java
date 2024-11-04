@@ -25,21 +25,18 @@ public class Member {
 
     private String password;
 
-    @Column(unique = true) private String nickname;
-
     @OneToMany(mappedBy = "member")
     @ToString.Exclude
     private final Set<CategoryAndTitle> categoryAndTitles = new LinkedHashSet<>();
 
     @Builder
-    public Member(String memberId, String password, String nickname) {
+    public Member(String memberId, String password) {
         this.memberId = memberId;
         this.password = password;
-        this.nickname = nickname;
     }
 
-    public static Member of(String memberId, String password, String nickname) {
-        return new Member(memberId, password, nickname);
+    public static Member of(String memberId, String password) {
+        return new Member(memberId, password);
     }
     public void addCategoryAndTitle(CategoryAndTitle categoryAndTitle) {
         this.categoryAndTitles.add(categoryAndTitle);

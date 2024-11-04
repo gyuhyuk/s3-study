@@ -24,20 +24,16 @@ public class MemberService {
 
     @Transactional
     public SignUpResponse signUp(SignUpRequest signUpRequest) throws CustomException {
-        if (memberRepository.findByNickname(signUpRequest.getNickname()).isPresent()) {
-            throw new CustomException(ErrorCode.DUPLICATE_NICKNAME_RESOURCE);
-        }
         if (memberRepository.findByMemberId(signUpRequest.getMemberId()).isPresent()) {
-            throw new CustomException(ErrorCode.DUPLICATE_EMAIL_RESOURCE);
+            throw new CustomException(ErrorCode.DUPLICATE_MEMBER_ID_RESOURCE);
         }
         Member member = memberRepository.save(
                 Member.builder()
                         .password(passwordEncoder.encode(signUpRequest.getPassword()))
                         .memberId(signUpRequest.getMemberId())
-                        .nickname(signUpRequest.getNickname())
                         .build());
 
-        return new SignUpResponse(member.getMemberId(), member.getNickname());
+        return new SignUpResponse(member.getMemberId());
     }
 
     @Transactional

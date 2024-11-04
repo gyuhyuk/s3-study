@@ -34,7 +34,7 @@ public enum ErrorCode {
     METHOD_NOT_ALLOWED(405, "METHOD_NOT_ALLOWED", "허용되지 않은 요청입니다."),
 
     /* 409 CONFLICT : 데이터 중복 */
-    DUPLICATE_EMAIL_RESOURCE(409, "CONFLICT", "이메일이 이미 존재합니다"),
+    DUPLICATE_MEMBER_ID_RESOURCE(409, "CONFLICT", "아이디가 이미 존재합니다"),
     DUPLICATE_NICKNAME_RESOURCE(409, "CONFLICT", "닉네임이 이미 존재합니다"),
     REVIEW_ALREADY_EXISTS(409, "CONFLICT", "리뷰가 이미 존재합니다."),
 

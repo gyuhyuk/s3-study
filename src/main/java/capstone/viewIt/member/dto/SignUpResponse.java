@@ -10,10 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SignUpResponse {
     private String memberId;
-    private String nickname;
 
-    public SignUpResponse(String memberId, String nickname) {
+    public SignUpResponse(String memberId) {
         this.memberId = memberId;
-        this.nickname = nickname;
     }
 }
