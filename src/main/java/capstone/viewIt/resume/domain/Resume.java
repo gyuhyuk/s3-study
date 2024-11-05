@@ -1,14 +1,18 @@
-package capstone.viewIt.question.domain;
+package capstone.viewIt.resume.domain;
 
 import capstone.viewIt.categoryAndTitle.domain.CategoryAndTitle;
 import capstone.viewIt.common.entity.BaseEntity;
+import capstone.viewIt.expect.domain.ExpectedQuestion;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
-public class Question extends BaseEntity {
+public class Resume extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,15 +25,18 @@ public class Question extends BaseEntity {
     @JoinColumn(name = "category_and_title_id", nullable = false)
     private CategoryAndTitle categoryAndTitle;
 
-    protected Question() {}
+    @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExpectedQuestion> expectedQuestions = new ArrayList<>();
 
-    private Question(String resumeQuestion, String resumeAnswer, CategoryAndTitle categoryAndTitle) {
+    protected Resume() {}
+
+    private Resume(String resumeQuestion, String resumeAnswer, CategoryAndTitle categoryAndTitle) {
         this.resumeQuestion = resumeQuestion;
         this.resumeAnswer = resumeAnswer;
         this.categoryAndTitle = categoryAndTitle;
     }
 
-    public static Question of(String resumeQuestion, String resumeAnswer, CategoryAndTitle categoryAndTitle) {
-        return new Question(resumeQuestion, resumeAnswer, categoryAndTitle);
+    public static Resume of(String resumeQuestion, String resumeAnswer, CategoryAndTitle categoryAndTitle) {
+        return new Resume(resumeQuestion, resumeAnswer, categoryAndTitle);
     }
 }

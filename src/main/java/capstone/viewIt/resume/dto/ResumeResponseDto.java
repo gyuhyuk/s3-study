@@ -1,4 +1,4 @@
-package capstone.viewIt.question.dto;
+package capstone.viewIt.resume.dto;
 
 
 public record ResumeResponseDto(
